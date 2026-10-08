@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Visualizador simples de fronteiras de decisão." />
+    <title>Fronteiras de decisão</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="page-header">
+        <h1>Fronteiras de decisão</h1>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel controls-panel" aria-label="Controles">
+          <section>
+            <h2>Dados</h2>
+            <label for="dataset">Exemplo</label>
+            <select id="dataset" data-lock>
+              <option>Carregando…</option>
+            </select>
+          </section>
+
+          <section>
+            <h2>Modelo</h2>
+            <label for="model">Algoritmo</label>
+            <select id="model" data-lock>
+              <option value="linear">Regressão logística</option>
+              <option value="svm">SVM</option>
+              <option value="knn">KNN</option>
+              <option value="genetic">Algoritmo genético</option>
+            </select>
+
+            <div id="svm-controls" class="subpanel" hidden>
+              <label for="kernel">Kernel</label>
+              <select id="kernel" data-lock>
+                <option value="linear">Linear</option>
+                <option value="rbf" selected>RBF</option>
+                <option value="poly">Polinomial</option>
+                <option value="sigmoid">Sigmoide</option>
+              </select>
+
+              <label for="c-value">C</label>
+              <input id="c-value" type="number" min="0.001" step="0.1" value="1" data-lock />
+
+              <div id="gamma-row">
+                <label for="gamma">Gamma</label>
+                <input id="gamma" type="text" value="scale" placeholder="scale, auto ou número" data-lock />
+              </div>
+
+              <div id="degree-row" hidden>
+                <label for="degree">Grau</label>
+                <input id="degree" type="number" min="1" max="8" value="3" data-lock />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Classe</h2>
+            <div id="class-buttons" class="class-buttons"></div>
+          </section>
+
+          <div class="actions">
+            <button id="train" class="primary" data-lock>Treinar</button>
+            <button id="reset" data-lock>Restaurar exemplo</button>
+            <button id="clear" data-lock>Limpar pontos</button>
+          </div>
+        </aside>
+
+        <section class="canvas-panel" aria-label="Visualização">
+          <div class="canvas-header">
+            <span id="status">Pronto</span>
+          </div>
+          <div class="canvas-frame">
+            <canvas id="boundary-canvas" width="720" height="720"></canvas>
+            <canvas id="points-canvas" width="720" height="720"></canvas>
+          </div>
+          <p class="hint">Clique para adicionar. Clique com o botão direito para remover.</p>
+        </section>
+
+        <aside class="panel stats-panel" aria-label="Resultados">
+          <section>
+            <h2>Resultado</h2>
+            <dl class="stats">
+              <div><dt>Iteração</dt><dd id="epoch">—</dd></div>
+              <div><dt>Erro</dt><dd id="loss">—</dd></div>
+              <div><dt>Acurácia</dt><dd id="accuracy">—</dd></div>
+            </dl>
+          </section>
+
+          <section>
+            <h2>Legenda</h2>
+            <div id="legend" class="legend"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

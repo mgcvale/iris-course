@@ -1,0 +1,11 @@
+[project]
+name = "draw-the-line-api"
+version = "0.1.0"
+description = "API do demo de fronteiras de decisão — modelos de ML treinados em tempo real via WebSocket"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.141.1",
+    "numpy>=2.5.2",
+    "scikit-learn>=1.9.0",
+    "uvicorn[standard]>=0.52.1",
+]
